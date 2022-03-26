@@ -21,3 +21,9 @@ model Position {
   name    String    @unique
   Athlete Athlete[]
 }
+
+model Coach {
+  id   String @id @default(uuid())
+  name String @unique
+
+}
