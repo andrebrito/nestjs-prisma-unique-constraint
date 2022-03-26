@@ -1,0 +1,23 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Athlete {
+  id   String @id @default(uuid())
+  code Int    @unique
+  name String
+
+  position   Position @relation(fields: [positionId], references: [id])
+  positionId String
+}
+
+model Position {
+  id      String    @id @default(uuid())
+  name    String    @unique
+  Athlete Athlete[]
+}
